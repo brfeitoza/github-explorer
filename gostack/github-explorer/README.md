@@ -1,10 +1,14 @@
 # Github Explorer
 
-This is a project to find repositories on Github.
+This is a project to find repositories and issues on Github.
 
-## Available Scripts
+## Getting Started
 
 In the project directory, you can run:
+
+### `yarn`
+
+Install all dependencies.
 
 ### `yarn start`
 
