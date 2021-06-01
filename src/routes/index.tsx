@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-import Dashboard from '../pages/Dashboard';
+import { Dashboard } from '../pages/Dashboard';
 import Repository from '../pages/Repository';
 
 const Routes: React.FC = () => (

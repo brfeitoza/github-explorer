@@ -1,9 +1,11 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import logoImg from '../../assets/logo.svg';
-import { Title, Form, Repositories, Error } from './styles';
+
+import { Logo } from '../../components/Logo';
 import api from '../../services/api';
+
+import { Title, Form, Repositories, Error } from './styles';
 
 interface Repository {
   full_name: string;
@@ -14,7 +16,7 @@ interface Repository {
   };
 }
 
-const Dashboard: React.FC = () => {
+export function Dashboard(): JSX.Element {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {
@@ -63,7 +65,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <img src={logoImg} alt="Github Explorer" />
+      <Logo />
       <Title>Explore repositórios no Github</Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
@@ -99,6 +101,4 @@ const Dashboard: React.FC = () => {
       </Repositories>
     </>
   );
-};
-
-export default Dashboard;
+}

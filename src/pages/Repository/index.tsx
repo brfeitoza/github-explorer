@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useRouteMatch, Link } from 'react-router-dom';
-import logoImg from '../../assets/logo.svg';
+
+import { Logo } from '../../components/Logo';
 import api from '../../services/api';
+
 import { Header, RepositoryInfo, Issues, Error } from './styles';
 
 interface RepositoryParams {
@@ -60,7 +62,7 @@ const Repository: React.FC = () => {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="Github Explorer" />
+        <Logo />
         <Link to="/">
           <FiChevronLeft size={16} />
           Voltar
