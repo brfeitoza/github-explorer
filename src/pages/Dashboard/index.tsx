@@ -1,10 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.svg';
-import {
-  Title, Form, Repositories, Error,
-} from './styles';
+import { Title, Form, Repositories, Error } from './styles';
 import api from '../../services/api';
 
 interface Repository {
@@ -13,14 +11,16 @@ interface Repository {
   owner: {
     login: string;
     avatar_url: string;
-  }
+  };
 }
 
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {
-    const storagedRepositories = localStorage.getItem('@GithubExplorer:repositories');
+    const storagedRepositories = localStorage.getItem(
+      '@GithubExplorer:repositories',
+    );
 
     if (!storagedRepositories) {
       return [];
@@ -30,14 +30,19 @@ const Dashboard: React.FC = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('@GithubExplorer:repositories', JSON.stringify(repositories));
+    localStorage.setItem(
+      '@GithubExplorer:repositories',
+      JSON.stringify(repositories),
+    );
   }, [repositories]);
 
-  async function handleAddRepository(event: FormEvent) {
+  async function handleAddRepository(event: FormEvent): Promise<void> {
     event.preventDefault();
 
     if (!newRepo) {
-      setInputError('Por favor, informe um repositório. Utilize o formato "usuário/repositório".');
+      setInputError(
+        'Por favor, informe um repositório. Utilize o formato "usuário/repositório".',
+      );
       return;
     }
 
@@ -50,7 +55,9 @@ const Dashboard: React.FC = () => {
       setNewRepo('');
       setInputError('');
     } catch (err) {
-      setInputError('Repositório não encontrado. Utilize o formato "usuário/repositório" para adicionar um repositório.');
+      setInputError(
+        'Repositório não encontrado. Utilize o formato "usuário/repositório" para adicionar um repositório.',
+      );
     }
   }
 
@@ -62,7 +69,7 @@ const Dashboard: React.FC = () => {
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
         <input
           value={newRepo}
-          onChange={(e) => setNewRepo(e.target.value)}
+          onChange={e => setNewRepo(e.target.value)}
           placeholder="Digite o nome do repositório"
         />
         <button type="submit">Pesquisar</button>
@@ -71,25 +78,24 @@ const Dashboard: React.FC = () => {
       {inputError && <Error>{inputError}</Error>}
 
       <Repositories>
-        {
-          repositories.map((repository) => (
-            <Link key={repository.full_name} to={`/repositories/${repository.full_name}`}>
-              <img
-                src={repository.owner.avatar_url}
-                alt={repository.owner.login}
-              />
+        {repositories.map(repository => (
+          <Link
+            key={repository.full_name}
+            to={`/repositories/${repository.full_name}`}
+          >
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
 
-              <div>
-                <strong>
-                  {repository.full_name}
-                </strong>
-                <p>{repository.description}</p>
-              </div>
+            <div>
+              <strong>{repository.full_name}</strong>
+              <p>{repository.description}</p>
+            </div>
 
-              <FiChevronRight size={20} />
-            </Link>
-          ))
-        }
+            <FiChevronRight size={20} />
+          </Link>
+        ))}
       </Repositories>
     </>
   );
