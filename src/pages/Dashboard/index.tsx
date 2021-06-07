@@ -4,17 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { Logo } from '../../components/Logo';
 import api from '../../services/api';
+import Repository from '../Repository';
 
 import { Title, Form, Repositories, Error } from './styles';
-
-interface Repository {
-  full_name: string;
-  description: string;
-  owner: {
-    login: string;
-    avatar_url: string;
-  };
-}
 
 export function Dashboard(): JSX.Element {
   const [newRepo, setNewRepo] = useState('');
@@ -45,6 +37,15 @@ export function Dashboard(): JSX.Element {
       setInputError(
         'Por favor, informe um repositório. Utilize o formato "usuário/repositório".',
       );
+      return;
+    }
+
+    const hasRepositoryAlreadyAdded = repositories.some(
+      repository => repository.full_name === newRepo,
+    );
+
+    if (hasRepositoryAlreadyAdded) {
+      setInputError('O repositório informado já foi adicionado.');
       return;
     }
 
