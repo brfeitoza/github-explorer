@@ -57,7 +57,11 @@ function setup(props = {}): Setup {
 
 describe('Dashboard page', () => {
   it('should be rendered in the document', () => {
-    render(<Dashboard />);
+    render(
+      <BrowserRouter>
+        <Dashboard />
+      </BrowserRouter>,
+    );
 
     expect(
       screen.getByText('Explore repositórios no Github'),
@@ -151,6 +155,27 @@ describe('Dashboard page', () => {
       expect(
         screen.getByText(/o repositório informado já foi adicionado/i),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('should navigate to details by clicking on a repository', async () => {
+    const { searchInput, searchButton } = setup();
+
+    fireEvent.change(searchInput, {
+      target: { value: 'facebook/react' },
+    });
+
+    fireEvent.click(searchButton);
+
+    await waitFor(() => {
+      const link = screen.getByRole('link', {
+        name: /facebook\/react/i,
+      });
+
+      expect(link).toHaveAttribute(
+        'href',
+        `/repositories/${defaultRepository.full_name}`,
+      );
     });
   });
 });

@@ -4,36 +4,12 @@ import { useRouteMatch, Link } from 'react-router-dom';
 
 import { Logo } from '../../components/Logo';
 import api from '../../services/api';
+import { Issue, Repository as RepositoryData, RepositoryParams } from './types';
 
 import { Header, RepositoryInfo, Issues, Error } from './styles';
 
-interface RepositoryParams {
-  repository: string;
-}
-
-interface Repository {
-  full_name: string;
-  description: string;
-  stargazers_count: number;
-  forks_count: number;
-  open_issues_count: number;
-  owner: {
-    login: string;
-    avatar_url: string;
-  };
-}
-
-interface Issue {
-  id: number;
-  title: string;
-  html_url: string;
-  user: {
-    login: string;
-  };
-}
-
-const Repository: React.FC = () => {
-  const [repository, setRepository] = useState<Repository | null>(null);
+export function Repository(): JSX.Element {
+  const [repository, setRepository] = useState<RepositoryData | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
   const [error, setError] = useState('');
 
@@ -118,6 +94,4 @@ const Repository: React.FC = () => {
       </Issues>
     </>
   );
-};
-
-export default Repository;
+}

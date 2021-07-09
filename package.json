@@ -5,7 +5,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test a --watchAll=false"
+    "test": "yarn test:tdd --watchAll=false",
+    "test:tdd": "react-scripts test a",
+    "test:coverage": "yarn test --coverage",
+    "test:tdd:coverage": "yarn test:tdd --coverage"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -57,6 +60,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "**/*.tsx",
+      "!**/*.spec.tsx",
+      "!**/App.tsx",
+      "!**/index.tsx"
     ]
   }
 }
