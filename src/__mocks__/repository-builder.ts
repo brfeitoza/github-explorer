@@ -9,6 +9,9 @@ export function repositoryBuilder(props = {}): Repository {
       login: 'facebook',
       avatar_url: 'https://avatars.githubusercontent.com/u/69631?v=4',
     },
+    stargazers_count: 171127,
+    forks_count: 34597,
+    open_issues_count: 768,
     ...props,
   };
 }
