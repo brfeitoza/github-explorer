@@ -79,6 +79,7 @@ export function Repository(): JSX.Element {
       <Issues>
         {issues.map(issue => (
           <a
+            data-testid={issue.title}
             key={issue.id}
             href={issue.html_url}
             target="_blank"
