@@ -8,7 +8,7 @@ import { Repository } from './types';
 
 import { Title, Form, Repositories, Error } from './styles';
 
-export function Dashboard(): JSX.Element {
+export function Dashboard() {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {

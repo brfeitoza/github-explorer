@@ -8,7 +8,7 @@ import { Issue, Repository as RepositoryData, RepositoryParams } from './types';
 
 import { Header, RepositoryInfo, Issues, Error } from './styles';
 
-export function Repository(): JSX.Element {
+export function Repository() {
   const [repository, setRepository] = useState<RepositoryData | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
   const [error, setError] = useState('');
@@ -16,7 +16,7 @@ export function Repository(): JSX.Element {
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
-    async function loadData(): Promise<void> {
+    async function loadData() {
       try {
         const [{ data: repositoryData }, { data: issuesData }] =
           await Promise.all([

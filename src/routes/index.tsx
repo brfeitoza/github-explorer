@@ -1,4 +1,6 @@
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+// eslint-disable-next-line
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Dashboard } from '../pages/Dashboard';
 import { Repository } from '../pages/Repository';
 
