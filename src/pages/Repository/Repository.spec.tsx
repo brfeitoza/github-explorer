@@ -61,19 +61,6 @@ async function setup(props = {}) {
 }
 
 describe('Repository page', () => {
-  it('should render the go back link', async () => {
-    setup();
-
-    await waitFor(() => {
-      const goBackLink = screen.getByRole('link', {
-        name: /voltar/i,
-      });
-
-      expect(goBackLink).toBeInTheDocument();
-      expect(goBackLink).toHaveAttribute('href', '/');
-    });
-  });
-
   it('should display the repository information correctly', async () => {
     const { apiResponse } = await setup();
 

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useRouteMatch, Link } from 'react-router-dom';
-
-import { Logo } from '../../components/Logo';
+import { FiChevronRight } from 'react-icons/fi';
+import { useRouteMatch } from 'react-router-dom';
+import { Header } from '../../components/Header';
 import api from '../../services/api';
+import * as S from './styles';
 import { Issue, Repository as RepositoryData, RepositoryParams } from './types';
-
-import { Header, RepositoryInfo, Issues, Error } from './styles';
 
 export function Repository() {
   const [repository, setRepository] = useState<RepositoryData | null>(null);
@@ -37,16 +35,10 @@ export function Repository() {
 
   return (
     <>
-      <Header>
-        <Logo />
-        <Link to="/">
-          <FiChevronLeft size={16} />
-          Voltar
-        </Link>
-      </Header>
+      <Header showGoBackButton />
 
       {repository && (
-        <RepositoryInfo>
+        <S.RepositoryInfo>
           <header>
             <img
               src={repository.owner.avatar_url}
@@ -71,12 +63,12 @@ export function Repository() {
               <span>Issues abertas</span>
             </li>
           </ul>
-        </RepositoryInfo>
+        </S.RepositoryInfo>
       )}
 
-      {error && <Error>{error}</Error>}
+      {error && <S.Error>{error}</S.Error>}
 
-      <Issues>
+      <S.Issues>
         {issues.map(issue => (
           <a
             data-testid={issue.title}
@@ -92,7 +84,7 @@ export function Repository() {
             <FiChevronRight size={20} />
           </a>
         ))}
-      </Issues>
+      </S.Issues>
     </>
   );
 }

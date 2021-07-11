@@ -1,12 +1,10 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-
-import { Logo } from '../../components/Logo';
+import { Header } from '../../components/Header';
 import api from '../../services/api';
+import * as S from './styles';
 import { Repository } from './types';
-
-import { Title, Form, Repositories, Error } from './styles';
 
 export function Dashboard() {
   const [newRepo, setNewRepo] = useState('');
@@ -66,21 +64,22 @@ export function Dashboard() {
 
   return (
     <>
-      <Logo />
-      <Title>Explore repositórios no Github</Title>
+      <Header />
 
-      <Form hasError={!!inputError} onSubmit={handleAddRepository}>
+      <S.Title>Explore repositórios no Github</S.Title>
+
+      <S.Form hasError={!!inputError} onSubmit={handleAddRepository}>
         <input
           value={newRepo}
           onChange={e => setNewRepo(e.target.value)}
           placeholder="Digite o nome do repositório"
         />
         <button type="submit">Pesquisar</button>
-      </Form>
+      </S.Form>
 
-      {inputError && <Error>{inputError}</Error>}
+      {inputError && <S.Error>{inputError}</S.Error>}
 
-      <Repositories>
+      <S.Repositories>
         {repositories.map(repository => (
           <Link
             key={repository.full_name}
@@ -99,7 +98,7 @@ export function Dashboard() {
             <FiChevronRight size={20} />
           </Link>
         ))}
-      </Repositories>
+      </S.Repositories>
     </>
   );
 }

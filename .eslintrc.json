@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -28,8 +29,12 @@
         "prettier/prettier": "error",
         "import/prefer-default-export": "off",
         "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
         "react/jsx-filename-extension": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "no-unused-vars": "warn"
     },
     "settings": {
         "import/resolver": {
