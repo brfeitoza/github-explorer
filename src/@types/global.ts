@@ -9,3 +9,12 @@ export interface Repository {
   forks_count: number;
   open_issues_count: number;
 }
+
+export interface Issue {
+  id: number;
+  title: string;
+  html_url: string;
+  user: {
+    login: string;
+  };
+}

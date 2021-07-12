@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
 import { useRouteMatch } from 'react-router-dom';
+import { Issue, Repository as RepositoryData } from '../../@types/global';
 import { Header } from '../../components/Header';
+import { CardIssue } from '../../components/CardIssue';
 import api from '../../services/api';
 import * as S from './styles';
-import { Issue, Repository as RepositoryData, RepositoryParams } from './types';
+import { RepositoryParams } from './types';
 
 export function Repository() {
   const [repository, setRepository] = useState<RepositoryData | null>(null);
@@ -70,19 +71,7 @@ export function Repository() {
 
       <S.Issues>
         {issues.map(issue => (
-          <a
-            data-testid={issue.title}
-            key={issue.id}
-            href={issue.html_url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>
-              <strong>{issue.title}</strong>
-              <p>{issue.user.login}</p>
-            </div>
-            <FiChevronRight size={20} />
-          </a>
+          <CardIssue key={issue.id} issue={issue} />
         ))}
       </S.Issues>
     </>

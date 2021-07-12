@@ -1,10 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Repository } from '../../@types/global';
+import { CardRepository } from '../../components/CardRepository';
 import { Header } from '../../components/Header';
 import api from '../../services/api';
 import * as S from './styles';
-import { Repository } from './types';
 
 export function Dashboard() {
   const [newRepo, setNewRepo] = useState('');
@@ -81,22 +80,7 @@ export function Dashboard() {
 
       <S.Repositories>
         {repositories.map(repository => (
-          <Link
-            key={repository.full_name}
-            to={`/repositories/${repository.full_name}`}
-          >
-            <img
-              src={repository.owner.avatar_url}
-              alt={repository.owner.login}
-            />
-
-            <div>
-              <strong>{repository.full_name}</strong>
-              <p>{repository.description}</p>
-            </div>
-
-            <FiChevronRight size={20} />
-          </Link>
+          <CardRepository key={repository.full_name} repository={repository} />
         ))}
       </S.Repositories>
     </>

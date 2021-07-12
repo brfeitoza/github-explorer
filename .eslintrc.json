@@ -34,7 +34,8 @@
         "react/react-in-jsx-scope": "off",
         "react/require-default-props": "off",
         "react/jsx-props-no-spreading": "off",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "camelcase": "off"
     },
     "settings": {
         "import/resolver": {

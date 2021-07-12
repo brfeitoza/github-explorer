@@ -1,13 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { mocked } from 'ts-jest/utils';
 import { BrowserRouter } from 'react-router-dom';
-
-import { defaultRepository } from '../../__mocks__/repository-builder';
-import { defaultIssueList } from '../../__mocks__/issue-list-builder';
-import api from '../../services/api';
-import { Repository as RepositoryData, Issue } from './types';
-
+import { mocked } from 'ts-jest/utils';
 import { Repository } from '.';
+import { Issue, Repository as RepositoryData } from '../../@types/global';
+import api from '../../services/api';
+import { defaultIssueList } from '../../__mocks__/issue-list-builder';
+import { defaultRepository } from '../../__mocks__/repository-builder';
 
 jest.mock('../../services/api');
 

@@ -1,4 +1,4 @@
-import { Repository } from '../pages/Dashboard/types';
+import { Repository } from '../@types/global';
 
 export function repositoryBuilder(props = {}): Repository {
   return {

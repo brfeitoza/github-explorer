@@ -71,7 +71,7 @@
     "collectCoverageFrom": [
       "**/*.ts",
       "**/*.tsx",
-      "!**/*.spec.tsx",
+      "!**/test.tsx",
       "!**/App.tsx",
       "!**/index.tsx"
     ]

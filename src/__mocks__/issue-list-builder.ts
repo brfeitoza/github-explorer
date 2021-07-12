@@ -1,4 +1,4 @@
-import { Issue } from '../pages/Repository/types';
+import { Issue } from '../@types/global';
 
 export function issueListBuilder(props = []): Issue[] {
   return [
